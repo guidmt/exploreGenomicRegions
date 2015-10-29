@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-plotTriangleHeatmap<-function(matrixpvalue,results_overlap,output)
+plotTriangleHeatmap<-function(matrixpvalue,results_overlap,output,k)
 {
 
 d_column <- dist(t(matrixpvalue), method = "euclidean") # distance matrix
@@ -12,30 +11,20 @@ quantileHeight_column<-data.frame(quantile(fit_column$height))
 df_quantile_height_column<-extractQuantile(quantileHeight_column)
 fit_hclust_cut<-cutHclust(fit_column,dfclust=df_quantile_height_column)
 
-=======
-plotTriangleHeatmap<-function(matrixpvalue,output)
-{
-
 d_column <- dist(t(matrixpvalue), method = "euclidean") # distance matrix
 fit_column <- hclust(d_column, method="centroid")
 
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 ##d_row<-dist(matrixpvalue,method="euclidean")
 ##fit_row<-hclust(d_row,method="centroid")
 
 ##k depends on the number of branch obsrved a priori
-
-<<<<<<< HEAD
 output1<-paste(output,"dendrogram_pvalue.pdf",sep="_")
-=======
-output1<-paste(output,"dendrogram_pvalue.pdf")
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 
 pdf(output1,width=30,height=10)
 
         par(mar=c(30,5,5,5))
 
-        d2=color_branches(fit_column,k=30)
+        d2=color_branches(fit_column,k)
 
         plot(d2)
 
@@ -45,19 +34,13 @@ dev.off()
 ###
 ### Correlation heatmap
 ###
-<<<<<<< HEAD
 
 results_overlap<-results_overlap[[3]]
 	
 n<-ncol(results_overlap[,c(6:ncol(results_overlap))])
 
 tab_for_correlation<-results_overlap[,c(6:ncol(results_overlap))]
-=======
-n<-ncol(results_overlap[nozero,c(6:ncol(results_overlap))])
-
-tab_for_correlation<-results_overlap[nozero,c(6:ncol(results_overlap))]
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
-colnames(tab_for_correlation)<-tabinfofile[,2]
+n<-ncol(results_overlap[,c(6:ncol(results_overlap))])
 
 cor_results_overlap<-cor(tab_for_correlation,method="pearson")
 
@@ -66,11 +49,7 @@ cor_results_overlap[lower.tri (cor_results_overlap)] <- NA
 color<-rev(brewer.pal(11, "Spectral"))
 pairs.breaks<-c(-1,-0.50,-0.30,-0.10,-0.05,0,0.05,0.10,0.30,0.5,0.7,1)
 
-<<<<<<< HEAD
 output2<-paste(output,"correlation_heatmap.pdf",sep="_")
-=======
-output2<-paste(output,"correlation_heatmap.pdf")
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 
 pdf(output2,width=20,height=20)
 heatmap.2(cor_results_overlap, col=color,breaks=pairs.breaks, Rowv = NA, Colv = NA,scale="none",keysize = 0.5,density.info="none", trace="none",symkey=FALSE,cexRow=0.5,cexCol=0.5,margins =c(20,20))
@@ -85,11 +64,7 @@ cor_results_overlap[lower.tri (cor_results_overlap)] <- NA
 color<-rev(brewer.pal(11, "Spectral"))
 pairs.breaks<-c(-1,-0.50,-0.30,-0.10,-0.05,0,0.05,0.10,0.30,0.5,0.7,1)
 
-<<<<<<< HEAD
 output3<-paste(output,"pvalues_correlation_heatmap.pdf",sep="_")
-=======
-output3<-paste(output,"pvalues_correlation_heatmap.pdf")
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 
 pdf("pvalues_correlation_heatmap.pdf",width=20,height=20)
 heatmap.2(cor_results_overlap, col=color,breaks=pairs.breaks, Rowv = NA, Colv = NA,scale="none",keysize = 0.5,density.info="none", trace="none",symkey=FALSE,cexRow=0.5,cexCol=0.5,margins =c(20,20))
@@ -100,40 +75,10 @@ quantileHeight_column<-data.frame(quantile(fit_column$height))
 
 
 #create a matrix for the stratification of p-values, useful during clustering
-<<<<<<< HEAD
 ##The follow code is to update
 ##
-dfclust<-data.frame()
 
-for(c in 1:nrow(quantileHeight_column)){
-
-	if(c+1 <=nrow(quantileHeight_column))
-=======
-
-dfclust<-data.frame()
-
-for(c in 1:nrow(quantileHeight)){
-
-	if(c+1 <=nrow(quantileHeight))
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
-
-	{
-
-
-<<<<<<< HEAD
-	dfrow<-data.frame(quantileHeight_column[c,1],quantileHeight_column[c+1,1])
-=======
-	dfrow<-data.frame(quantileHeight[c,1],quantileHeight[c+1,1])
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
-	
-	dfclust<-rbind(dfclust,dfrow)
-
-	}
-
-
-}
-
-return(dfclust)
+#return(dfclust)
 
 }
 

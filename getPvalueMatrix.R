@@ -1,10 +1,7 @@
 getPvalueMatrix<-function(results_overlap,tabinfofile){
 
-<<<<<<< HEAD
 results_overlap<-results_overlap[[3]]
 
-=======
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 subtab_for_pvalue<-results_overlap[,6:ncol(results_overlap)]
 
 #i want only a binary matrix with zero and one this because during the conversion with the p-value the script can have problem to manage the substitution of gsub
@@ -13,11 +10,8 @@ subtab_for_pvalue<-subtab_for_pvalue/subtab_for_pvalue
 
 subtab_for_pvalue[is.na(subtab_for_pvalue)]<-0
 
-<<<<<<< HEAD
 vector_pvalue<-results_overlap[[1]]
 
-=======
->>>>>>> a4152a653761d2edcfeba6dfa562d2b457ea2f7d
 for(c in 1:ncol(subtab_for_pvalue)){
 print(c)
 select_pvalue<-vector_pvalue[c]
