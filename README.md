@@ -5,6 +5,5 @@ Characteristics
 R-implementation
 scripts for the visualization and the extraction of subset of data
 script for the integration of omics data (ChIP-seq, ATAC-seq, DNAse)
-the scripts are also available on https://github.com/guidmt
 NEWS
 23/10/2015: Today is born exploreGenomicRegions!! Send your contribute!
